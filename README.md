@@ -1,16 +1,22 @@
 # photo_booth
 
-A simplified photo booth application.
+A simplified PhotoBooth application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This Flutter application allows user to take a photo from default camera of the device,
+store them and view later. There are two screens in the app HomeScreen, PhotosScreen.
 
-A few resources to get you started if this is your first Flutter project:
+The code is written in Dart using [BLoc](https://pub.dev/packages/flutter_bloc) pattern and Clean Architecture.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This project is followed Test Driven Development approach, but still needs more test cases including
+widget and bloc tests.
+flutter_test library is used for Unit testing and [mockito](https://pub.dev/packages/mockito) for
+mocking objects.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run the application plug in the device and run next command on the terminal:
+flutter run
+
+Notes: If you want to run on iOS real device, you should add your Signing certificates and profiles in XCode.
+
+
