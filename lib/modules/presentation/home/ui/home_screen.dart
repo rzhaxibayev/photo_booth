@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:photo_booth/common/cubit/core_state.dart';
 import 'package:photo_booth/config/routes.dart';
+import 'package:photo_booth/di/locator.dart';
+import 'package:photo_booth/modules/presentation/home/cubit/home_cubit.dart';
 import 'package:photo_booth/modules/presentation/home/ui/widgets/home_action_button.dart';
 import 'package:photo_booth/utils/image_utils.dart';
 
@@ -11,44 +15,65 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  ImagePicker _imagePicker = ImagePicker();
-  TextEditingController _textController = TextEditingController();
+  late HomeCubit _cubit;
+  late ImagePicker _imagePicker;
+  late TextEditingController _textController;
+
+  @override
+  void initState() {
+    super.initState();
+    _cubit = sl<HomeCubit>();
+    _imagePicker = ImagePicker();
+    _textController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              HomeActionButton(
-                title: 'Take a photo',
-                onPressed: () {
-                  taketPhoto(context, _imagePicker, onCaptured: (base64Image) {
-                    _showNameSettingBottomSheet();
-                  });
-                },
-              ),
-              const SizedBox(height: 16),
-              HomeActionButton(
-                title: 'View photos',
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.photos);
-                },
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text('Home'),
         ),
-      ),
-    );
+        body: BlocConsumer<HomeCubit, CoreState>(
+          bloc: _cubit,
+          listener: (_, state) {},
+          builder: (context, state) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HomeActionButton(
+                      title: 'Take a photo',
+                      onPressed: () {
+                        taketPhoto(context, _imagePicker,
+                            onCaptured: (base64Image) {
+                          _showNameSettingBottomSheet(base64Image);
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    HomeActionButton(
+                      title: 'View photos',
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(AppRoutes.photos);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ));
   }
 
-  void _showNameSettingBottomSheet() {
+  void _showNameSettingBottomSheet(String base64Image) {
     _textController.clear();
     showModalBottomSheet(
       isScrollControlled: true,
@@ -96,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomeActionButton(
                   title: 'Save',
                   onPressed: () {
+                    _cubit.savePhoto(_textController.text, base64Image);
                     Navigator.of(context).pop();
                   },
                 ),
