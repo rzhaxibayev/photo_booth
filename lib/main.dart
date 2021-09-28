@@ -4,11 +4,11 @@ import 'package:photo_booth/modules/presentation/home/ui/home_screen.dart';
 import 'package:photo_booth/modules/presentation/photos/ui/photos_screen.dart';
 import 'di/locator.dart' as service_locator;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// DI initialization
-  service_locator.init();
+  await service_locator.init();
 
   runApp(PhotoBoothApp());
 }

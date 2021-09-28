@@ -14,7 +14,7 @@ class PhotosRepositoryImpl implements PhotosRepository {
   }
 
   @override
-  Future<void> savePhoto(Photo photo) {
-    return dataSource.savePhoto(photo.toModel());
+  Future<void> savePhoto(Photo photo) async {
+    return await dataSource.savePhoto(photo.toModel());
   }
 }
