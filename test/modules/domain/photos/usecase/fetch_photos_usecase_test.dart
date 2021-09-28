@@ -19,6 +19,7 @@ void main() {
       name: 'Test Name',
       date: 'Test Date',
       image: 'Test Image',
+      thumbnail: 'Test Thumbnail',
     ),
   ];
 

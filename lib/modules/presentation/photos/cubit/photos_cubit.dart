@@ -3,7 +3,7 @@ import 'package:photo_booth/common/usecases/usecase.dart';
 import 'package:photo_booth/modules/domain/photos/usecase/fetch_photos_usecase.dart';
 import 'package:photo_booth/modules/presentation/photos/cubit/photos_states.dart';
 
-/// BLoC for home screen
+/// BLoC for photos screen
 class PhotosCubit extends CoreCubit {
   final FetchPhotosUsecase fetchPhotosUsecase;
 

@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_booth/common/cubit/core_state.dart';
 import 'package:photo_booth/di/locator.dart';
+import 'package:photo_booth/modules/presentation/photo_detail/ui/photo_detail_screen.dart';
 import 'package:photo_booth/modules/presentation/photos/cubit/photos_cubit.dart';
 import 'package:photo_booth/modules/presentation/photos/cubit/photos_states.dart';
 import 'package:photo_booth/modules/presentation/photos/ui/widgets/photo_item_widget.dart';
@@ -38,8 +37,15 @@ class _PhotosScreenState extends State<PhotosScreen> {
               ? (state.photos?.isNotEmpty ?? false)
                   ? ListView.builder(
                       itemCount: state.photos?.length ?? 0,
-                      itemBuilder: (_, index) =>
-                          PhotoItemWidget(photo: state.photos?[index]),
+                      itemBuilder: (_, index) => PhotoItemWidget(
+                        photo: state.photos![index],
+                        onPressed: (photo) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PhotoDetailScreen(
+                                    photo: photo,
+                                  )));
+                        },
+                      ),
                     )
                   : Center(
                       child: Text(

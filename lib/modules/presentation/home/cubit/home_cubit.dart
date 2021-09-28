@@ -10,13 +10,16 @@ class HomeCubit extends CoreCubit {
   HomeCubit({required this.savePhotoUsecase}) : super(HomeState());
 
   /// saves photo in local storage
-  void savePhoto(String? name, String base64Image) async {
+  void savePhoto(
+      String? name, String base64Image, String base64Thumbnail) async {
     final now = DateTime.now();
     final photo = Photo(
-        id: now.toString(),
-        name: name ?? '',
-        date: now.toString(),
-        image: base64Image);
+      id: now.toString(),
+      name: name ?? '',
+      date: now.toString(),
+      image: base64Image,
+      thumbnail: base64Thumbnail,
+    );
 
     await savePhotoUsecase.call(photo);
   }

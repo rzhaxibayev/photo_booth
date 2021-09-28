@@ -6,12 +6,14 @@ class Photo extends Equatable {
   final String name;
   final String date;
   final String image;
+  final String thumbnail;
 
   Photo({
     required this.id,
     required this.name,
     required this.date,
     required this.image,
+    required this.thumbnail,
   });
 
   String get fullName => name.isNotEmpty ? name : 'No name';
@@ -22,6 +24,7 @@ class Photo extends Equatable {
       name: model.name,
       date: model.date,
       image: model.image,
+      thumbnail: model.thumbnail,
     );
   }
 
@@ -31,9 +34,10 @@ class Photo extends Equatable {
       name: name,
       date: date,
       image: image,
+      thumbnail: thumbnail,
     );
   }
 
   @override
-  List<Object?> get props => [id, name, date, image];
+  List<Object?> get props => [id, name, date, image, thumbnail];
 }

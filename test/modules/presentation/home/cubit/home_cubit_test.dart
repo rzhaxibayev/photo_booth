@@ -30,9 +30,10 @@ void main() {
       /// set up
       final mockName = 'Test name';
       final mockImage = 'Test image';
+      final mockThumbnail = 'Test thumbnail';
 
       /// result
-      cubit.savePhoto(mockName, mockImage);
+      cubit.savePhoto(mockName, mockImage, mockThumbnail);
 
       /// assertion
       verify(mockSavePhotoUsecase.call(any));

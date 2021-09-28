@@ -6,12 +6,14 @@ class PhotoModel extends Equatable {
   final String name;
   final String date;
   final String image;
+  final String thumbnail;
 
   PhotoModel({
     required this.id,
     required this.name,
     required this.date,
     required this.image,
+    required this.thumbnail,
   });
 
   factory PhotoModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class PhotoModel extends Equatable {
       name: json['name'],
       date: json['date'],
       image: json['image'],
+      thumbnail: json['thumbnail'],
     );
   }
 
@@ -29,9 +32,10 @@ class PhotoModel extends Equatable {
       'name': name,
       'date': date,
       'image': image,
+      'thumbnail': thumbnail,
     };
   }
 
   @override
-  List<Object> get props => [id, name, date, image];
+  List<Object> get props => [id, name, date, image, thumbnail];
 }

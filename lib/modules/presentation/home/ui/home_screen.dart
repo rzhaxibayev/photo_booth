@@ -53,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: 'Take a photo',
                       onPressed: () {
                         taketPhoto(context, _imagePicker,
-                            onCaptured: (base64Image) {
-                          _showNameSettingBottomSheet(base64Image);
+                            onCaptured: (image, thumbnail) {
+                          _showNameSettingBottomSheet(image, thumbnail);
                         });
                       },
                     ),
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  void _showNameSettingBottomSheet(String base64Image) {
+  void _showNameSettingBottomSheet(String base64Image, String base64Thumbnail) {
     _textController.clear();
     showModalBottomSheet(
       isScrollControlled: true,
@@ -121,7 +121,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 HomeActionButton(
                   title: 'Save',
                   onPressed: () {
-                    _cubit.savePhoto(_textController.text, base64Image);
+                    _cubit.savePhoto(
+                      _textController.text,
+                      base64Image,
+                      base64Thumbnail,
+                    );
                     Navigator.of(context).pop();
                   },
                 ),

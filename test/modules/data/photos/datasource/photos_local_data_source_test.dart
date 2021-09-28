@@ -19,6 +19,7 @@ void main() {
     name: 'Test Name',
     date: 'Test Date',
     image: 'Test Image',
+    thumbnail: 'Test Thumbnail',
   );
 
   final mockPhotoModelJson = {
@@ -26,6 +27,7 @@ void main() {
     'name': 'Test Name',
     'date': 'Test Date',
     'image': 'Test Image',
+    'thumbnail': 'Test Thumbnail',
   };
 
   List<PhotoModel> mockPhotosList = [mockPhotoModel];
