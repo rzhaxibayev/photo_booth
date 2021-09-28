@@ -17,7 +17,7 @@ class HomeActionButton extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         primary: Colors.blueAccent,
-        minimumSize: Size(200, 56),
+        minimumSize: Size(MediaQuery.of(context).size.width, 56),
         padding: const EdgeInsets.all(16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),

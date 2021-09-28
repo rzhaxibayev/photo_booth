@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:photo_booth/config/routes.dart';
-import 'package:photo_booth/modules/presentation/camera/ui/camera_screen.dart';
 import 'package:photo_booth/modules/presentation/home/ui/home_screen.dart';
 import 'package:photo_booth/modules/presentation/photos/ui/photos_screen.dart';
 import 'di/locator.dart' as service_locator;
@@ -30,7 +29,6 @@ class PhotoBoothApp extends StatelessWidget {
 
   /// Registration of all routes in the app
   Map<String, WidgetBuilder> _registerRoutes() => {
-        AppRoutes.camera: (context) => CameraScreen(),
         AppRoutes.home: (context) => HomeScreen(),
         AppRoutes.photos: (context) => PhotosScreen(),
       };

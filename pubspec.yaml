@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  camera: ^0.8.0
+  image_picker: ^0.8.3+1
   cupertino_icons: ^1.0.0
   flutter_bloc: ^7.0.0
   get_it: ^6.0.0
