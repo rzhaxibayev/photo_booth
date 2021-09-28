@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const cachedPhotosList = 'cachedPhotosList';
 
-class PhotosLocalDataSourceImpl extends PhotosLocalDataSource {
+class PhotosLocalDataSourceImpl implements PhotosLocalDataSource {
   final SharedPreferences sharedPreferences;
 
   PhotosLocalDataSourceImpl({required this.sharedPreferences});
@@ -25,11 +25,10 @@ class PhotosLocalDataSourceImpl extends PhotosLocalDataSource {
   }
 
   @override
-  Future<void> savePhoto(PhotoModel photo) async {
+  Future<bool> savePhoto(PhotoModel photo) async {
     List<PhotoModel> photos = await fetchPhotos();
     photos.insert(0, photo);
     var jsonEncodedPhotos = json.encode(photos.map((e) => e.toJson()).toList());
-    print("jsonStr=>$jsonEncodedPhotos");
-    await sharedPreferences.setString(cachedPhotosList, jsonEncodedPhotos);
+    return sharedPreferences.setString(cachedPhotosList, jsonEncodedPhotos);
   }
 }

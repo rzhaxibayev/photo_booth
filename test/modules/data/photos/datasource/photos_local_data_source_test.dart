@@ -1,17 +1,18 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:photo_booth/modules/data/photos/datasource/photos_local_data_source_impl.dart';
 import 'package:photo_booth/modules/data/photos/model/photo_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MockSharedPreferences extends Mock implements SharedPreferences {}
+import 'photos_local_data_source_test.mocks.dart';
 
+@GenerateMocks([SharedPreferences])
 void main() {
-  MockSharedPreferences sharedPreferences = MockSharedPreferences();
-  PhotosLocalDataSourceImpl dataSource =
-      PhotosLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+  late MockSharedPreferences sharedPreferences;
+  late PhotosLocalDataSourceImpl dataSource;
 
   final mockPhotoModel = PhotoModel(
     id: '1',
@@ -30,6 +31,12 @@ void main() {
   List<PhotoModel> mockPhotosList = [mockPhotoModel];
 
   List<Map<String, dynamic>> mockPhotosListJson = [mockPhotoModelJson];
+
+  setUp(() {
+    sharedPreferences = MockSharedPreferences();
+    dataSource =
+        PhotosLocalDataSourceImpl(sharedPreferences: sharedPreferences);
+  });
 
   group('fetchPhotos', () {
     test('should return valid list of PhotoModel when cache is not empty',
