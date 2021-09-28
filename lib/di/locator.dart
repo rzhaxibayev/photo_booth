@@ -6,6 +6,7 @@ import 'package:photo_booth/modules/domain/photos/repository/photos_repository.d
 import 'package:photo_booth/modules/domain/photos/usecase/fetch_photos_usecase.dart';
 import 'package:photo_booth/modules/domain/photos/usecase/save_photo_usecase.dart';
 import 'package:photo_booth/modules/presentation/home/cubit/home_cubit.dart';
+import 'package:photo_booth/modules/presentation/photos/cubit/photos_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// service locator
@@ -33,4 +34,5 @@ Future<void> init() async {
 
   /// Blocs
   sl.registerFactory(() => HomeCubit(savePhotoUsecase: sl()));
+  sl.registerFactory(() => PhotosCubit(fetchPhotosUsecase: sl()));
 }

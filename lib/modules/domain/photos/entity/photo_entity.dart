@@ -14,6 +14,8 @@ class Photo extends Equatable {
     required this.image,
   });
 
+  String get fullName => name.isNotEmpty ? name : 'No name';
+
   factory Photo.fromModel(PhotoModel model) {
     return Photo(
       id: model.id,

@@ -11,9 +11,9 @@ void taketPhoto(
 }) async {
   try {
     final image = await picker.pickImage(
-      source: ImageSource.camera,
-      preferredCameraDevice: CameraDevice.front,
-    );
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.rear,
+        imageQuality: 80);
     if (image != null) {
       final bytes = await image.readAsBytes();
       final base64Image = base64Encode(bytes);
