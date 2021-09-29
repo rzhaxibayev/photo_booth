@@ -14,7 +14,8 @@ widget and bloc tests.
 flutter_test library is used for Unit testing and [mockito](https://pub.dev/packages/mockito) for
 mocking objects.
 
-To run the application plug in the device and run next command on the terminal:
+To run the application use the latest versions of Dart and Flutter SDK, plug in the device and run next command on the terminal:
+
 flutter run
 
 Notes: If you want to run on iOS real device, you should add your Signing certificates and profiles in XCode.
